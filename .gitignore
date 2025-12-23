@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Data (데이터는 코드로 생성하거나 별도 링크로 공유)
+data/processed/*.pt
+data/processed/*.json
+
+# Models (용량이 큼 -> HuggingFace Hub나 Google Drive 추천)
+saved_models/*.pth
+*.pth
+
+# IDE settings
+.vscode/
+.idea/
+
+# Logs
+logs/
