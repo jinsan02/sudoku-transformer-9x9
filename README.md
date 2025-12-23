@@ -1,3 +1,10 @@
+네, 요청하신 **Performance History(벤치마크 기록)** 섹션을 포함하여 완성된 `README.md` 전체 코드입니다.
+
+아래 내용을 그대로 복사해서 `README.md` 파일에 덮어쓰시면 됩니다.
+
+---
+
+```markdown
 # 🧩 9x9 Sudoku Solver with Transformer (Expert Baseline)
 
 Transformer 아키텍처를 활용하여 **Expert(고난이도)** 수준의 9x9 스도쿠를 해결하는 AI 프로젝트입니다.
@@ -116,6 +123,21 @@ python inference.py
 | **Performance** | ~63% (Expert) | Zero-shot Reasoning (No backtracking) |
 
 > **Note:** 현재 버전(v1.0)은 8-layer Baseline 모델입니다. Expert 난이도의 완전한 해결(99%+)을 위해서는 모델의 깊이(Layers)와 파라미터(Hidden Dim)를 확장하는 Scale-Up이 권장됩니다.
+
+---
+
+## 🏆 Performance History (Benchmarks)
+
+이 프로젝트는 다양한 모델 크기와 난이도 설정에서 테스트되었습니다.
+이전 실험에서 **Medium 난이도(빈칸 24~48개)** 기준 **99% 이상의 정확도**를 달성하여 아키텍처의 우수성을 입증했습니다. 현재는 가장 어려운 **Expert 난이도** 정복을 목표로 최적화를 진행 중입니다.
+
+| Model Version | Parameters | Difficulty (Holes) | Accuracy | Note |
+| --- | --- | --- | --- | --- |
+| **Current Baseline** | ~14M (8-Layer) | **Expert (40-64)** | ~63.0% | 🚧 **Work in Progress** (Hardest Task) |
+| **Legacy Large** | 38M | Medium (24-48) | **99.41%** | `best_model_38M_H24-48` |
+| **Legacy Base** | 25M | Medium (24-48) | **99.12%** | `best_model_25M_H24-48` |
+
+> **Insight:** 빈칸이 적절한(Medium) 수준에서는 Transformer가 스도쿠 패턴을 완벽하게 학습(99%+)함을 확인했습니다. 현재 Expert 단계에서의 성능 저하는 추론 깊이(Reasoning Depth)의 부족 때문으로 분석되며, 모델 Scale-Up을 통해 해결할 예정입니다.
 
 ---
 
