@@ -1,10 +1,3 @@
-네, 요청하신 **Performance History(벤치마크 기록)** 섹션을 포함하여 완성된 `README.md` 전체 코드입니다.
-
-아래 내용을 그대로 복사해서 `README.md` 파일에 덮어쓰시면 됩니다.
-
----
-
-```markdown
 # 🧩 9x9 Sudoku Solver with Transformer (Expert Baseline)
 
 Transformer 아키텍처를 활용하여 **Expert(고난이도)** 수준의 9x9 스도쿠를 해결하는 AI 프로젝트입니다.
