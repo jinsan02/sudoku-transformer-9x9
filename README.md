@@ -5,6 +5,8 @@ Transformer 아키텍처를 활용하여 **Expert(고난이도)** 수준의 9x9 
 
 현재 **8-Layer Baseline 모델**로 Expert 난이도에서 유의미한 추론 능력을 확보했으며(약 63%), 추후 모델 확장을 위한 유연한 코드 구조로 설계되었습니다.
 
+---
+
 ## 📌 주요 특징 (Key Features)
 
 ### 1. 구조적 임베딩 & Attention (Structural Awareness)
@@ -22,6 +24,8 @@ Transformer 아키텍처를 활용하여 **Expert(고난이도)** 수준의 9x9 
 ### 4. 중앙 집중식 설정 관리 (Centralized Config)
 * `src/config.py` 파일 하나로 모델 크기(Layer, Hidden dim), 학습 파라미터, 데이터 경로 등을 통합 관리합니다.
 * 모델의 깊이(Depth)나 너비(Width)를 `config` 수정만으로 즉시 변경할 수 있어 실험 용이성이 뛰어납니다.
+
+---
 
 ## 📂 디렉토리 구조 (Structure)
 
@@ -43,13 +47,82 @@ sudoku-transformer-9x9/
 ├── inference.py                 # [3단계] 추론 및 성능 테스트 스크립트
 ├── requirements.txt             # 의존성 목록
 └── README.md                    # 프로젝트 문서
-🚀 설치 및 실행 순서 (Installation & Usage)이 프로젝트는 Python 3.10 및 PyTorch(CUDA 권장) 환경에서 테스트되었습니다.1. 환경 설정 (Installation)Bash# 레포지토리 클론
+
+```
+
+---
+
+## 🚀 설치 및 실행 순서 (Installation & Usage)
+
+이 프로젝트는 Python 3.10 및 PyTorch(CUDA 권장) 환경에서 테스트되었습니다.
+
+### 1. 환경 설정 (Installation)
+
+```bash
+# 레포지토리 클론
 git clone [https://github.com/your-username/sudoku-transformer-9x9.git](https://github.com/your-username/sudoku-transformer-9x9.git)
 cd sudoku-transformer-9x9
 
 # 필수 라이브러리 설치
 pip install -r requirements.txt
-2. 데이터 생성 (Data Generation)MRV 알고리즘을 사용하여 고품질 데이터를 생성합니다. (기본 설정: 30만 개)Bashpython generate_data.py
-결과: data/processed/ 폴더에 train.pt, val.pt가 생성됩니다.특징: Expert 난이도 비율이 높게 설정되어 있습니다.3. 모델 학습 (Training)Bashpython train.py
-결과: saved_models/best_model.pth에 최적의 가중치가 저장됩니다.로그: 학습 진행률과 검증 정확도(Val Acc)가 실시간으로 표시됩니다.4. 테스트 및 추론 (Inference)AI의 문제 풀이 능력을 검증합니다. (기본값: Expert 난이도 100문제 테스트)Bashpython inference.py
-단순 정답 비교가 아닌, **스도쿠 규칙 유효성(Validity)**을 기준으로 채점합니다.실제 스도쿠가 풀리는 과정을 시각적으로 확인할 수 있습니다.🧠 모델 아키텍처 정보 (Baseline Architecture)항목설정값 (Baseline)설명Grid Size9x9Standard SudokuEmbedding512 dimToken + (Row + Col + Box) EmbeddingsLayers8Transformer Encoder BlocksHeads8Multi-head AttentionAlgorithmMRVMinimum Remaining Values for Data GenPerformance~63% (Expert)Zero-shot Reasoning (No backtracking)Note: 현재 버전(v1.0)은 8-layer Baseline 모델입니다. Expert 난이도의 완전한 해결(99%+)을 위해서는 모델의 깊이(Layers)와 파라미터(Hidden Dim)를 확장하는 Scale-Up이 권장됩니다.📝 LicenseThis project is licensed under the MIT License.
+
+```
+
+### 2. 데이터 생성 (Data Generation)
+
+MRV 알고리즘을 사용하여 고품질 데이터를 생성합니다. (기본 설정: 30만 개)
+
+```bash
+python generate_data.py
+
+```
+
+* **결과:** `data/processed/` 폴더에 `train.pt`, `val.pt`가 생성됩니다.
+* **특징:** Expert 난이도 비율이 높게 설정되어 있습니다.
+
+### 3. 모델 학습 (Training)
+
+```bash
+python train.py
+
+```
+
+* **결과:** `saved_models/best_model.pth`에 최적의 가중치가 저장됩니다.
+* **로그:** 학습 진행률과 검증 정확도(Val Acc)가 실시간으로 표시됩니다.
+
+### 4. 테스트 및 추론 (Inference)
+
+AI의 문제 풀이 능력을 검증합니다. (기본값: Expert 난이도 100문제 테스트)
+
+```bash
+python inference.py
+
+```
+
+* 단순 정답 비교가 아닌, **스도쿠 규칙 유효성(Validity)**을 기준으로 채점합니다.
+* 실제 스도쿠가 풀리는 과정을 시각적으로 확인할 수 있습니다.
+
+---
+
+## 🧠 모델 아키텍처 정보 (Baseline Architecture)
+
+| 항목 | 설정값 (Baseline) | 설명 |
+| --- | --- | --- |
+| **Grid Size** | 9x9 | Standard Sudoku |
+| **Embedding** | 512 dim | Token + (Row + Col + Box) Embeddings |
+| **Layers** | 8 | Transformer Encoder Blocks |
+| **Heads** | 8 | Multi-head Attention |
+| **Algorithm** | MRV | Minimum Remaining Values for Data Gen |
+| **Performance** | ~63% (Expert) | Zero-shot Reasoning (No backtracking) |
+
+> **Note:** 현재 버전(v1.0)은 8-layer Baseline 모델입니다. Expert 난이도의 완전한 해결(99%+)을 위해서는 모델의 깊이(Layers)와 파라미터(Hidden Dim)를 확장하는 Scale-Up이 권장됩니다.
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License.
+
+```
+
+```
